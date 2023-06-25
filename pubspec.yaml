@@ -1,0 +1,27 @@
+name: gallery_app_tutorial
+description: A new Flutter project.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.0.2 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # for getting files from user's device
+  photo_manager: ^2.6.0
+  # add ability to zoom images
+  photo_view: ^0.14.0
+  # for being able to play videos
+  video_player: ^2.6.1
+  # provides controls for playing videos
+  chewie: ^1.5.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
