@@ -13,25 +13,18 @@ class ImageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Hero(
-      tag: 'image',
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(),
-        body: Container(
-          color: Colors.black,
-          alignment: Alignment.center,
-          child: FutureBuilder<File>(
-            future: imageFile.then((value) => value!),
-            builder: (_, snapshot) {
-              final file = snapshot.data;
-              if (file == null) return Container();
-              return PhotoView(
-                imageProvider: FileImage(file),
-              );
-            },
-          ),
-        ),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(),
+      body: FutureBuilder<File>(
+        future: imageFile.then((value) => value!),
+        builder: (_, snapshot) {
+          final file = snapshot.data;
+          if (file == null) return Container();
+          return PhotoView(
+            imageProvider: FileImage(file),
+          );
+        },
       ),
     );
   }

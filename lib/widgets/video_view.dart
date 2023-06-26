@@ -22,25 +22,10 @@ class _VideoViewState extends State<VideoView> {
   late final Chewie videoPlayerWidget;
   bool initialized = false;
 
-  @override
-  void initState() {
-    _initVideo();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _videoPlayerController.dispose();
-    _chewieController.dispose();
-    super.dispose();
-  }
-
   _initVideo() async {
     final video = await widget.videoFile;
     _videoPlayerController = VideoPlayerController.file(video!)
-      // Play the video again when it ends
       ..setLooping(true)
-      // initialize the controller and notify UI when done
       ..initialize().then(
         (_) => setState(() => initialized = true),
       );
@@ -56,6 +41,19 @@ class _VideoViewState extends State<VideoView> {
   }
 
   @override
+  void initState() {
+    _initVideo();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _videoPlayerController.dispose();
+    _chewieController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
@@ -65,7 +63,6 @@ class _VideoViewState extends State<VideoView> {
               body: Center(
                 child: AspectRatio(
                   aspectRatio: _videoPlayerController.value.aspectRatio,
-                  // Use the VideoPlayer widget to display the video.
                   child: videoPlayerWidget,
                 ),
               ),

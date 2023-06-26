@@ -8,6 +8,25 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            PhotoManager.requestPermissionExtend().then(
+              (PermissionState state) {
+                if (state.isAuth) {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => const GalleryScreen(),
+                    ),
+                  );
+                }
+              },
+            );
+          },
+          child: const Text('Open Gallery'),
+        ),
+      ),
+    );
   }
 }
